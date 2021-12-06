@@ -1,0 +1,100 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Empty bin folder",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "${workspaceFolder}/bin",
+                "-r",
+                "-Force"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Configure project",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--no-warn-unused-cli",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE",
+                "-DCMAKE_BUILD_TYPE:STRING=Debug",
+                "-DCMAKE_C_COMPILER:FILEPATH=C:/msys64/mingw64/bin/gcc.exe",
+                "-DCMAKE_CXX_COMPILER:FILEPATH=C:/msys64/mingw64/bin/g++.exe",
+                "-H${workspaceFolder}",
+                "-B${workspaceFolder}/build",
+                "-G",
+                "NMake Makefiles JOM"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build project",
+            "type": "cppbuild",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--config",
+                "Debug",
+                "--target",
+                "all"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Add dependencies",
+            "type": "shell",
+            "command": "windeployqt",
+            "args": [
+                "${workspaceFolder}/bin",
+                "--release",
+                "--qmldir",
+                "${workspaceFolder}"
+            ]
+        },
+        {
+            "label": "Recompile completely",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Empty bin folder",
+                "Configure project",
+                "Build project",
+                "Add dependencies"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Recompile",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Configure project",
+                "Build project"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Lightweight recompile",
+            "dependsOn": [
+                "Build project"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
