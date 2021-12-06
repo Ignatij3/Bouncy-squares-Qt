@@ -32,7 +32,6 @@ int main(int argc, char* argv[])
     engine.rootContext()->setContextProperty("rect3", &rect3);
     engine.rootContext()->setContextProperty("rect4", &rect4);
     engine.rootContext()->setContextProperty("rect5", &rect5);
-
     engine.load("qml/main.qml");
 
     std::thread t1([&]() { return handler.run(); });
