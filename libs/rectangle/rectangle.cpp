@@ -1,25 +1,5 @@
 #include "rectangle.hpp"
 
-double shape::MyRectangle::LeftX() const noexcept
-{
-    return centre.x - width;
-}
-
-double shape::MyRectangle::RightX() const noexcept
-{
-    return centre.x + width;
-}
-
-double shape::MyRectangle::UpperY() const noexcept
-{
-    return centre.y - height;
-}
-
-double shape::MyRectangle::LowerY() const noexcept
-{
-    return centre.y + height;
-}
-
 void shape::MyRectangle::SetSides() noexcept
 {
     double lx = LeftX();
@@ -63,16 +43,6 @@ shape::MyRectangle::~MyRectangle()
     delete sides[1];
     delete sides[2];
     delete sides[3];
-}
-
-std::vector<shape::Vector*> shape::MyRectangle::get_sides() const noexcept
-{
-    return sides;
-}
-
-const int shape::MyRectangle::side_amount() const noexcept
-{
-    return SIDE_AMOUNT;
 }
 
 void shape::MyRectangle::move() noexcept

@@ -53,4 +53,14 @@ namespace shape
     };
 }
 
+inline void shape::Shape::movement_toggle() noexcept
+{
+    dynamic = dynamic ? false : true;
+}
+
+inline void shape::Shape::movement_toggle(Movement move) noexcept
+{
+    dynamic = move;
+}
+
 #endif // BOUNCY_SQUARE_LIBS_SHAPE_SHAPE_HPP

@@ -7,38 +7,11 @@
 #include <thread>
 #include <vector>
 
-std::pair<double, double> convert_to_cartesian(double x, double y)
-{
-    return std::make_pair(x, ObjectHandler::window_height - y);
-}
-
-shape::Point convert_to_cartesian(shape::Point a)
-{
-    std::pair<double, double> pt = convert_to_cartesian(a.x, a.y);
-    return shape::Point(pt.first, pt.second);
-}
-
 ObjectHandler::ObjectHandler(int fps) :
     window_frame(shape::Movement::STATIC, ObjectHandler::window_width / 2, ObjectHandler::window_height / 2, ObjectHandler::window_width, ObjectHandler::window_height, 0),
     fps(fps)
 {
     objects.insert(objects.begin(), &window_frame);
-}
-
-void ObjectHandler::add_object(shape::Shape* figure)
-{
-    objects.insert(objects.end(), figure);
-}
-
-void ObjectHandler::set_color(shape::Shape* figure, QColor col) noexcept
-{
-    figure->color = col;
-}
-
-void ObjectHandler::add_object(shape::Shape* figure, QColor col)
-{
-    set_color(figure, col);
-    add_object(figure);
 }
 
 // check for collisions between objects

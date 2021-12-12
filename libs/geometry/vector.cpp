@@ -1,3 +1,4 @@
+
 #include "vector.hpp"
 
 #include "float.hpp"
@@ -65,11 +66,6 @@ void shape::Vector::set_vectors(double x1, double y1, double x2, double y2) noex
     b.y = y1 + y2;
 }
 
-double shape::Vector::get_angle() const noexcept
-{
-    return angle;
-}
-
 bool shape::Vector::cross(const Vector& lineb) const noexcept
 {
     auto sign = [](int x) -> char { return ((x > 0) ? '+' : ((x < 0) ? '-' : '0')); };
@@ -102,26 +98,6 @@ double shape::Vector::magnitude() const noexcept
     return sqrt(x_diff_squared + y_diff_squared);
 }
 
-double shape::Vector::highest_x() const noexcept
-{
-    return (a.x > b.x) ? a.x : b.x;
-}
-
-double shape::Vector::lowest_x() const noexcept
-{
-    return (a.x < b.x) ? a.x : b.x;
-}
-
-double shape::Vector::highest_y() const noexcept
-{
-    return (a.y > b.y) ? a.y : b.y;
-}
-
-double shape::Vector::lowest_y() const noexcept
-{
-    return (a.y < b.y) ? a.y : b.y;
-}
-
 // calculates determinant
 int shape::Vector::operator^(Vector& rhs) const noexcept
 {
@@ -149,9 +125,4 @@ shape::Vector& shape::Vector::operator=(Vector&& rhs) noexcept
     angle = rhs.angle;
 
     return *this;
-}
-
-bool shape::Vector::operator==(const Vector& rhs) const noexcept
-{
-    return (a == rhs.a && b == rhs.b);
 }

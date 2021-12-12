@@ -39,4 +39,34 @@ namespace shape
     };
 }
 
+inline double shape::Vector::get_angle() const noexcept
+{
+    return angle;
+}
+
+inline double shape::Vector::highest_x() const noexcept
+{
+    return (a.x > b.x) ? a.x : b.x;
+}
+
+inline double shape::Vector::lowest_x() const noexcept
+{
+    return (a.x < b.x) ? a.x : b.x;
+}
+
+inline double shape::Vector::highest_y() const noexcept
+{
+    return (a.y > b.y) ? a.y : b.y;
+}
+
+inline double shape::Vector::lowest_y() const noexcept
+{
+    return (a.y < b.y) ? a.y : b.y;
+}
+
+inline bool shape::Vector::operator==(const Vector& rhs) const noexcept
+{
+    return (a == rhs.a && b == rhs.b);
+}
+
 #endif // BOUNCY_SQUARE_LIBS_GEOMETRY_VECTOR_HPP

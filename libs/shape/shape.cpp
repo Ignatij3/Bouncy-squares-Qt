@@ -110,13 +110,3 @@ std::pair<bool, shape::Vector*> shape::Shape::LiesOnLine(std::vector<Vector*>& s
 
     return std::make_pair(false, nullptr);
 }
-
-void shape::Shape::movement_toggle() noexcept
-{
-    dynamic = dynamic ? false : true;
-}
-
-void shape::Shape::movement_toggle(Movement move) noexcept
-{
-    dynamic = move;
-}

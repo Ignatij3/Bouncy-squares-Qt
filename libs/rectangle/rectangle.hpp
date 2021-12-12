@@ -51,4 +51,34 @@ namespace shape
     };
 }
 
+inline double shape::MyRectangle::LeftX() const noexcept
+{
+    return centre.x - width;
+}
+
+inline double shape::MyRectangle::RightX() const noexcept
+{
+    return centre.x + width;
+}
+
+inline double shape::MyRectangle::UpperY() const noexcept
+{
+    return centre.y - height;
+}
+
+inline double shape::MyRectangle::LowerY() const noexcept
+{
+    return centre.y + height;
+}
+
+inline std::vector<shape::Vector*> shape::MyRectangle::get_sides() const noexcept
+{
+    return sides;
+}
+
+inline const int shape::MyRectangle::side_amount() const noexcept
+{
+    return SIDE_AMOUNT;
+}
+
 #endif // BOUNCY_SQUARE_LIBS_RECTANGLE_RECTANGLE_HPP
