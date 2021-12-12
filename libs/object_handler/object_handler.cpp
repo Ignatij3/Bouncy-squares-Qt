@@ -7,14 +7,14 @@
 #include <thread>
 #include <vector>
 
-std::pair<double, double> ConvertToCartesian(double x, double y)
+std::pair<double, double> convert_to_cartesian(double x, double y)
 {
     return std::make_pair(x, ObjectHandler::window_height - y);
 }
 
-shape::Point ConvertToCartesian(shape::Point a)
+shape::Point convert_to_cartesian(shape::Point a)
 {
-    std::pair<double, double> pt = ConvertToCartesian(a.x, a.y);
+    std::pair<double, double> pt = convert_to_cartesian(a.x, a.y);
     return shape::Point(pt.first, pt.second);
 }
 
