@@ -21,7 +21,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
+            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\cdf0c23db9fe84d9ab66bec6fa7de8bc\\tonka3000.qtvsctools\\qt.natvis.xml"
         },
         {
             "name": "Recompile",
@@ -43,7 +43,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
+            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\cdf0c23db9fe84d9ab66bec6fa7de8bc\\tonka3000.qtvsctools\\qt.natvis.xml"
         },
         {
             "name": "Lightweight recompile",
@@ -65,7 +65,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
+            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\cdf0c23db9fe84d9ab66bec6fa7de8bc\\tonka3000.qtvsctools\\qt.natvis.xml"
         },
         {
             "name": "Execute",
@@ -85,7 +85,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
+            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\cdf0c23db9fe84d9ab66bec6fa7de8bc\\tonka3000.qtvsctools\\qt.natvis.xml"
         },
         {
             "name": "Recompile tests",
@@ -97,7 +97,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "externalConsole": true,
-            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
+            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\cdf0c23db9fe84d9ab66bec6fa7de8bc\\tonka3000.qtvsctools\\qt.natvis.xml"
         },
         {
             "name": "Run tests",
@@ -108,7 +108,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "externalConsole": true,
-            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
+            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\cdf0c23db9fe84d9ab66bec6fa7de8bc\\tonka3000.qtvsctools\\qt.natvis.xml"
         }
     ]
 }

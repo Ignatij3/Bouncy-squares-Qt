@@ -1,5 +1,5 @@
-#ifndef BOUNCY_SQUARE_SHAPES_VECTOR_H
-#define BOUNCY_SQUARE_SHAPES_VECTOR_H
+#ifndef BOUNCY_SQUARE_LIBS_GEOMETRY_VECTOR_HPP
+#define BOUNCY_SQUARE_LIBS_GEOMETRY_VECTOR_HPP
 
 #include "point.hpp"
 
@@ -7,7 +7,6 @@
 namespace shape
 {
     class Vector {
-      private:
         double angle;
 
       public:
@@ -19,19 +18,19 @@ namespace shape
         Vector(double x1, double y1, double x2, double y2) noexcept;
         Vector(const Vector& rhs) noexcept;
 
-        void setAngle() noexcept;
-        double getAngle() const noexcept;
-        double Magnitude() const noexcept;
-        double Slope() const noexcept;
-        bool LiesBetween(const Vector& outsideVector) const noexcept;
-        void SetVectors(Point point, Point vector) noexcept;
-        void SetVectors(double x1, double y1, double x2, double y2) noexcept;
-        bool Cross(const Vector& lineb) const noexcept;
+        void set_angle() noexcept;
+        double get_angle() const noexcept;
+        double magnitude() const noexcept;
+        double slope() const noexcept;
+        bool lies_between(const Vector& outsideVector) const noexcept;
+        void set_vectors(Point point, Point vector) noexcept;
+        void set_vectors(double x1, double y1, double x2, double y2) noexcept;
+        bool cross(const Vector& lineb) const noexcept;
 
-        double HighestX() const noexcept;
-        double LowestX() const noexcept;
-        double HighestY() const noexcept;
-        double LowestY() const noexcept;
+        double highest_x() const noexcept;
+        double lowest_x() const noexcept;
+        double highest_y() const noexcept;
+        double lowest_y() const noexcept;
 
         int operator^(Vector& rhs) const noexcept;
         Vector& operator=(const Vector& rhs) noexcept;
@@ -40,4 +39,4 @@ namespace shape
     };
 }
 
-#endif // BOUNCY_SQUARE_SHAPES_VECTOR_H
+#endif // BOUNCY_SQUARE_LIBS_GEOMETRY_VECTOR_HPP

@@ -20,41 +20,41 @@ shape::Shape::Shape(Movement move, Point centreCoords, double width, double heig
     centre.y = (centre.y < half_height) ? half_height
                                         : ((centre.y > (ObjectHandler::window_height - half_height)) ? (ObjectHandler::window_height - half_height) : centre.y);
 
-    centre   = ConvertToNormalCoords(centre);
+    centre   = convert_to_cartesian(centre);
     q_centre = QPointF(centre.x, centre.y);
-    MovementToggle(move);
+    movement_toggle(move);
 }
 
 shape::Shape::Shape() noexcept { }
 
-void shape::Shape::Reflect(double otherVectorAngle) noexcept
+void shape::Shape::reflect(double otherVectorAngle) noexcept
 {
     if (dynamic)
     {
         angle = -360 + (2 * otherVectorAngle) - angle;
         angle = (angle < 0) ? 360 + angle : angle;
-        SetDirection();
+        set_direction();
     }
 }
 
 // setDirection sets shape's direction in degrees, where 0 points right and goes anticlockwise
 // if alpha is smaller than 0 or greater than 360, direction is set to 0
-void shape::Shape::SetDirection() noexcept
+void shape::Shape::set_direction() noexcept
 {
     direction.first  = cos(angle * PI / 180); // converting degrees to radians
     direction.second = sin(angle * PI / 180); // converting degrees to radians
 }
 
-std::pair<bool, std::pair<const shape::Vector*, const shape::Vector*>> shape::Shape::CollideWith(Shape* other) noexcept
+std::pair<bool, std::pair<const shape::Vector*, const shape::Vector*>> shape::Shape::collide_with(Shape* other) noexcept
 {
-    std::vector<Vector*> sides       = GetSides();
-    std::vector<Vector*> other_sides = other->GetSides();
+    std::vector<Vector*> sides       = get_sides();
+    std::vector<Vector*> other_sides = other->get_sides();
 
-    for (int i = 0; i < sideAmount(); ++i)
+    for (int i = 0; i < side_amount(); ++i)
     {
-        for (int j = 0; j < other->sideAmount(); ++j)
+        for (int j = 0; j < other->side_amount(); ++j)
         {
-            if (sides[i]->Cross(*other_sides[j]))
+            if (sides[i]->cross(*other_sides[j]))
             {
                 return std::make_pair(true, FindSidesToReflect(sides, other_sides, i, j));
             }
@@ -102,7 +102,7 @@ std::pair<bool, shape::Vector*> shape::Shape::LiesOnLine(std::vector<Vector*>& s
             return std::make_pair(true, otherVec); // vector, perpendicular to incoming angle
         }
 
-        if (AlmostEqual(otherVec->Slope(), temp.Slope(), 0.01) && temp.LiesBetween(*otherVec)) // lies on the same line as the vector does and is between endpoints
+        if (almost_equal(otherVec->slope(), temp.slope(), 0.01) && temp.lies_between(*otherVec)) // lies on the same line as the vector does and is between endpoints
         {
             return std::make_pair(true, otherVec);
         }
@@ -111,12 +111,12 @@ std::pair<bool, shape::Vector*> shape::Shape::LiesOnLine(std::vector<Vector*>& s
     return std::make_pair(false, nullptr);
 }
 
-void shape::Shape::MovementToggle() noexcept
+void shape::Shape::movement_toggle() noexcept
 {
     dynamic = dynamic ? false : true;
 }
 
-void shape::Shape::MovementToggle(Movement move) noexcept
+void shape::Shape::movement_toggle(Movement move) noexcept
 {
     dynamic = move;
 }

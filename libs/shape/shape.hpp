@@ -1,5 +1,5 @@
-#ifndef BOUNCY_SQUARE_SHAPES_SHAPE_H
-#define BOUNCY_SQUARE_SHAPES_SHAPE_H
+#ifndef BOUNCY_SQUARE_LIBS_SHAPE_SHAPE_HPP
+#define BOUNCY_SQUARE_LIBS_SHAPE_SHAPE_HPP
 
 #include "vector.hpp"
 
@@ -38,19 +38,19 @@ namespace shape
         QPointF q_centre;
         QColor color = "black";
 
-        virtual std::vector<Vector*> GetSides() const  = 0;
-        virtual const int constexpr sideAmount() const = 0;
-        virtual void Move()                            = 0;
+        virtual std::vector<Vector*> get_sides() const  = 0;
+        virtual const int constexpr side_amount() const = 0;
+        virtual void move()                             = 0;
 
         Shape(Movement move, Point coords, double width, double height, double alpha) noexcept;
         Shape() noexcept;
 
-        void SetDirection() noexcept;
-        void Reflect(double otherVectorAngle) noexcept;
-        void MovementToggle() noexcept;
-        void MovementToggle(Movement move) noexcept;
-        std::pair<bool, std::pair<const Vector*, const Vector*>> CollideWith(Shape* other) noexcept;
+        void set_direction() noexcept;
+        void reflect(double otherVectorAngle) noexcept;
+        void movement_toggle() noexcept;
+        void movement_toggle(Movement move) noexcept;
+        std::pair<bool, std::pair<const Vector*, const Vector*>> collide_with(Shape* other) noexcept;
     };
 }
 
-#endif // BOUNCY_SQUARE_SHAPES_SHAPE_H
+#endif // BOUNCY_SQUARE_LIBS_SHAPE_SHAPE_HPP

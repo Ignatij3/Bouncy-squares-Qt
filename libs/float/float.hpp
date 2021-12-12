@@ -1,7 +1,7 @@
-#ifndef BOUNCY_SQUARE_FLOAT_H
-#define BOUNCY_SQUARE_FLOAT_H
+#ifndef BOUNCY_SQUARE_LIBS_FLOAT_FLOAT_HPP
+#define BOUNCY_SQUARE_LIBS_FLOAT_FLOAT_HPP
 
 const double PI = 3.14159265;
-bool AlmostEqual(double a, double b, double epsilon);
+bool almost_equal(double a, double b, double epsilon);
 
-#endif // BOUNCY_SQUARE_FLOAT_H
+#endif // BOUNCY_SQUARE_LIBS_FLOAT_FLOAT_HPP

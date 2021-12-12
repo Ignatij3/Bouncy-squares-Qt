@@ -27,19 +27,19 @@ void shape::MyRectangle::SetSides() noexcept
     double uy = UpperY();
     double ly = LowerY();
 
-    sides[0]->SetVectors(lx, uy, width * 2, 0);  // top side
-    sides[1]->SetVectors(rx, uy, 0, height * 2); // right side
-    sides[2]->SetVectors(lx, uy, 0, height * 2); // left side
-    sides[3]->SetVectors(lx, ly, width * 2, 0);  // bottom side
+    sides[0]->set_vectors(lx, uy, width * 2, 0);  // top side
+    sides[1]->set_vectors(rx, uy, 0, height * 2); // right side
+    sides[2]->set_vectors(lx, uy, 0, height * 2); // left side
+    sides[3]->set_vectors(lx, ly, width * 2, 0);  // bottom side
 }
 
 void shape::MyRectangle::SetSidesSetAngle() noexcept
 {
     SetSides();
-    sides[0]->setAngle();
-    sides[1]->setAngle();
-    sides[2]->setAngle();
-    sides[3]->setAngle();
+    sides[0]->set_angle();
+    sides[1]->set_angle();
+    sides[2]->set_angle();
+    sides[3]->set_angle();
 }
 
 shape::MyRectangle::MyRectangle(Movement move, Point coords, double width, double height, double alpha) :
@@ -50,7 +50,7 @@ shape::MyRectangle::MyRectangle(Movement move, Point coords, double width, doubl
     for (int i = 0; i < SIDE_AMOUNT; i++)
         sides.push_back(new Vector);
 
-    SetDirection();
+    set_direction();
     SetSidesSetAngle();
 }
 
@@ -65,17 +65,17 @@ shape::MyRectangle::~MyRectangle()
     delete sides[3];
 }
 
-std::vector<shape::Vector*> shape::MyRectangle::GetSides() const noexcept
+std::vector<shape::Vector*> shape::MyRectangle::get_sides() const noexcept
 {
     return sides;
 }
 
-const int shape::MyRectangle::sideAmount() const noexcept
+const int shape::MyRectangle::side_amount() const noexcept
 {
     return SIDE_AMOUNT;
 }
 
-void shape::MyRectangle::Move() noexcept
+void shape::MyRectangle::move() noexcept
 {
     if (dynamic)
     {

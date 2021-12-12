@@ -1,5 +1,5 @@
-#ifndef BOUNCY_SQUARE_SHAPES_POINT_H
-#define BOUNCY_SQUARE_SHAPES_POINT_H
+#ifndef BOUNCY_SQUARE_LIBS_GEOMETRY_POINT_HPP
+#define BOUNCY_SQUARE_LIBS_GEOMETRY_POINT_HPP
 
 namespace shape
 {
@@ -9,10 +9,10 @@ namespace shape
         Point() noexcept;
         Point(double x, double y) noexcept;
 
-        double XDiff(const Point& rhs) const noexcept;
-        double YDiff(const Point& rhs) const noexcept;
+        double x_diff(const Point& rhs) const noexcept;
+        double y_diff(const Point& rhs) const noexcept;
         bool operator==(const Point& rhs) const noexcept;
     };
 }
 
-#endif // BOUNCY_SQUARE_SHAPES_POINT_H
+#endif // BOUNCY_SQUARE_LIBS_GEOMETRY_POINT_HPP

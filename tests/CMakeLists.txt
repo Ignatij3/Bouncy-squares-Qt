@@ -13,6 +13,17 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(main "main.cpp")
+include_directories(
+    "src/object_handler"
+    "src/point"
+    "src/rectangle"
+    "src/shape"
+    "src/vector"
+)
+
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE HEADERS "src/*.hpp")
+
+add_executable(main "main.cpp" ${SOURCES} ${HEADERS})
 target_link_libraries(main gtest_main)
 add_test(NAME example_test COMMAND main)

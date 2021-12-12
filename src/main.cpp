@@ -7,7 +7,6 @@
 #include <QQmlContext>
 #include <QQmlProperty>
 #include <QSurfaceFormat>
-#include <iostream>
 #include <thread>
 
 int main(int argc, char* argv[])
@@ -20,16 +19,16 @@ int main(int argc, char* argv[])
     QQmlApplicationEngine engine;
 
     shape::MyRectangle rect1(shape::Movement::DYNAMIC, 100, 220, 40, 40, 135);
-    shape::MyRectangle rect2(shape::Movement::STATIC, 200, 520, 75, 75, 330);
+    shape::MyRectangle rect2(shape::Movement::STATIC, 200, 520, 500, 5, 330);
     shape::MyRectangle rect3(shape::Movement::DYNAMIC, 1200, 520, 35, 35, 30);
     shape::MyRectangle rect4(shape::Movement::DYNAMIC, 600, 400, 50, 50, 180);
     shape::MyRectangle rect5(shape::Movement::DYNAMIC, 100, 20, 5, 5, 350);
 
-    handler.AddObject(&rect1, "darkred");
-    handler.AddObject(&rect2, "orange");
-    handler.AddObject(&rect3, "green");
-    handler.AddObject(&rect4, "blue");
-    handler.AddObject(&rect5, "darkgreen");
+    handler.add_object(&rect1, "darkred");
+    handler.add_object(&rect2, "orange");
+    handler.add_object(&rect3, "green");
+    handler.add_object(&rect4, "blue");
+    handler.add_object(&rect5, "yellow");
 
     engine.rootContext()->setContextProperty("rect1", &rect1);
     engine.rootContext()->setContextProperty("rect2", &rect2);
@@ -41,3 +40,5 @@ int main(int argc, char* argv[])
     std::thread t1([&]() { return handler.run(); });
     return app.exec();
 }
+
+// TODO - написать загрузку внешней конфигурации фигур

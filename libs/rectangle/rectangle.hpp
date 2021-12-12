@@ -1,5 +1,5 @@
-#ifndef BOUNCY_SQUARE_SHAPES_RECTANGLE_H
-#define BOUNCY_SQUARE_SHAPES_RECTANGLE_H
+#ifndef BOUNCY_SQUARE_LIBS_RECTANGLE_RECTANGLE_HPP
+#define BOUNCY_SQUARE_LIBS_RECTANGLE_RECTANGLE_HPP
 
 #include "point.hpp"
 #include "shape.hpp"
@@ -40,10 +40,10 @@ namespace shape
         ~MyRectangle();
 
         MyRectangle static InitFromStdin();
-        std::vector<Vector*> GetSides() const noexcept override;
-        const int sideAmount() const noexcept override;
+        std::vector<Vector*> get_sides() const noexcept override;
+        const int side_amount() const noexcept override;
 
-        void Move() noexcept override;
+        void move() noexcept override;
         MyRectangle& operator=(const MyRectangle& rhs) noexcept;
 
       signals:
@@ -51,4 +51,4 @@ namespace shape
     };
 }
 
-#endif // BOUNCY_SQUARE_SHAPES_RECTANGLE_H
+#endif // BOUNCY_SQUARE_LIBS_RECTANGLE_RECTANGLE_HPP
