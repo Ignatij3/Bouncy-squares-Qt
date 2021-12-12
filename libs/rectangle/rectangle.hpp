@@ -8,6 +8,7 @@
 #include <QObject>
 #include <QPointF>
 #include <QtQml/qqmlregistration.h>
+#include <memory>
 #include <vector>
 
 namespace shape
@@ -36,7 +37,6 @@ namespace shape
       public:
         MyRectangle(Movement move, Point centreCoords, double width, double height, double alpha);
         MyRectangle(Movement move, double centreX, double centreY, double width, double height, double alpha);
-        MyRectangle() noexcept;
         ~MyRectangle();
 
         MyRectangle static InitFromStdin();

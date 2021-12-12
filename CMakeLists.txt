@@ -17,14 +17,15 @@ find_package(Qt6 COMPONENTS Qml Core Gui Quick REQUIRED)
 include_directories(
     "libs/float"
     "libs/geometry"
-    "libs/Rectangle"
+    "libs/object_handler"
+    "libs/rectangle"
     "libs/shape"
 )
 
 file(GLOB_RECURSE SOURCES "libs/*.cpp")
 file(GLOB_RECURSE HEADERS "libs/*.hpp")
 
-add_subdirectory("libs/Rectangle")
+add_subdirectory("libs/rectangle")
 
 list(APPEND SOURCES
     "src/main.cpp"

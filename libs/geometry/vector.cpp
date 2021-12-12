@@ -135,9 +135,8 @@ int shape::Vector::operator^(Vector& rhs) const noexcept
 
 shape::Vector& shape::Vector::operator=(const Vector& rhs) noexcept
 {
-    a = rhs.a;
-    b = rhs.b;
-
+    a     = rhs.a;
+    b     = rhs.b;
     angle = rhs.angle;
 
     return *this;

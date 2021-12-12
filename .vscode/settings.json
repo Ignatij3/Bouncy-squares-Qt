@@ -85,7 +85,10 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "variant": "cpp",
-        "qcolor": "cpp"
+        "qcolor": "cpp",
+        "any": "cpp",
+        "forward_list": "cpp",
+        "unordered_set": "cpp"
     },
     "cmake.configureOnOpen": true,
     "cmake.sourceDirectory": "${workspaceFolder}/.",

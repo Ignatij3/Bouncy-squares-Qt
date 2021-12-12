@@ -7,11 +7,15 @@
 #include <QQmlContext>
 #include <QQmlProperty>
 #include <QSurfaceFormat>
+#include <iostream>
 #include <thread>
 
 int main(int argc, char* argv[])
 {
-    ObjectHandler handler(210, 1200, 720);
+    ObjectHandler::window_width  = 1200;
+    ObjectHandler::window_height = 720;
+    ObjectHandler handler(210);
+
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 

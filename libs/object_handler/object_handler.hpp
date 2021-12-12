@@ -21,7 +21,7 @@ class ObjectHandler {
     inline static int window_width;
     inline static int window_height;
 
-    ObjectHandler(int fps_, int win_width, int win_height);
+    ObjectHandler(int fps_);
 
     void AddObject(shape::Shape* figure);
     void AddObject(shape::Shape* figure, QColor col);

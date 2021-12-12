@@ -48,7 +48,7 @@ shape::MyRectangle::MyRectangle(Movement move, Point coords, double width, doubl
     height((height < 0) ? 0 : height / 2)
 {
     for (int i = 0; i < SIDE_AMOUNT; i++)
-        sides.insert(sides.end(), new Vector());
+        sides.push_back(new Vector);
 
     SetDirection();
     SetSidesSetAngle();
@@ -57,14 +57,12 @@ shape::MyRectangle::MyRectangle(Movement move, Point coords, double width, doubl
 shape::MyRectangle::MyRectangle(Movement move, double centreX, double centreY, double width, double height, double alpha) :
     MyRectangle(move, Point(centreX, centreY), width, height, alpha) { }
 
-shape::MyRectangle::MyRectangle() noexcept { }
-
-shape::MyRectangle::~MyRectangle() // unique_ptr
+shape::MyRectangle::~MyRectangle()
 {
-    // delete sides[0];
-    // delete sides[1];
-    // delete sides[2];
-    // delete sides[3];
+    delete sides[0];
+    delete sides[1];
+    delete sides[2];
+    delete sides[3];
 }
 
 std::vector<shape::Vector*> shape::MyRectangle::GetSides() const noexcept

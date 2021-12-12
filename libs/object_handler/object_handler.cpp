@@ -19,13 +19,10 @@ shape::Point ConvertToNormalCoords(shape::Point a)
     return shape::Point(pt.first, pt.second);
 }
 
-ObjectHandler::ObjectHandler(int fps, int win_width, int win_height) :
+ObjectHandler::ObjectHandler(int fps) :
+    window_frame(shape::Movement::STATIC, ObjectHandler::window_width / 2, ObjectHandler::window_height / 2, ObjectHandler::window_width, ObjectHandler::window_height, 0),
     fps(fps)
 {
-    ObjectHandler::window_width  = win_width;
-    ObjectHandler::window_height = win_height;
-
-    window_frame = shape::MyRectangle(shape::Movement::STATIC, window_width / 2, window_height / 2, window_width, window_height, 0);
     objects.insert(objects.begin(), &window_frame);
 }
 
