@@ -86,6 +86,29 @@
                 }
             ],
             "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
+        },
+        {
+            "name": "Recompile tests",
+            "program": "${workspaceFolder}/tests/bin/main.exe",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "preLaunchTask": "Recompile tests",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": true,
+            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
+        },
+        {
+            "name": "Run tests",
+            "program": "${workspaceFolder}/tests/bin/main.exe",
+            "type": "cppdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": true,
+            "visualizerFile": "c:\\Users\\ignat\\AppData\\Roaming\\Code\\User\\workspaceStorage\\5dbb1feebbeaf0504b1da47092dac7cc\\tonka3000.qtvsctools\\qt.natvis.xml"
         }
     ]
 }

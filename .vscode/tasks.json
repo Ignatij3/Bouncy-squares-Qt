@@ -37,12 +37,50 @@
             ]
         },
         {
+            "label": "Configure tests",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--no-warn-unused-cli",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE",
+                "-DCMAKE_BUILD_TYPE:STRING=Debug",
+                "-DCMAKE_C_COMPILER:FILEPATH=C:/msys64/mingw64/bin/gcc.exe",
+                "-DCMAKE_CXX_COMPILER:FILEPATH=C:/msys64/mingw64/bin/g++.exe",
+                "-H${workspaceFolder}/tests",
+                "-B${workspaceFolder}/tests/build",
+                "-G",
+                "NMake Makefiles JOM"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
             "label": "Build project",
             "type": "cppbuild",
             "command": "cmake",
             "args": [
                 "--build",
                 "${workspaceFolder}/build",
+                "--config",
+                "Debug",
+                "--target",
+                "all"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build tests",
+            "type": "cppbuild",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/tests/build",
                 "--config",
                 "Debug",
                 "--target",
@@ -95,6 +133,14 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Recompile tests",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Configure tests",
+                "Build tests"
+            ]
         }
     ]
 }
