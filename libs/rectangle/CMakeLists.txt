@@ -12,4 +12,5 @@ qt_add_qml_module(rectangle
 
 target_link_libraries(rectangle PRIVATE
     Qt6::Gui
+    libs
 )

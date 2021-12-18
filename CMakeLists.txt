@@ -14,18 +14,7 @@ set(CMAKE_AUTORCC ON)
 find_package(QT NAMES Qt6 COMPONENTS Qml Core Gui Quick REQUIRED)
 find_package(Qt6 COMPONENTS Qml Core Gui Quick REQUIRED)
 
-include_directories(
-    "libs/float"
-    "libs/geometry"
-    "libs/object_handler"
-    "libs/rectangle"
-    "libs/shape"
-)
-
-file(GLOB_RECURSE SOURCES "libs/*.cpp")
-file(GLOB_RECURSE HEADERS "libs/*.hpp")
-
-add_subdirectory("libs/rectangle")
+add_subdirectory("libs")
 
 list(APPEND SOURCES
     "src/main.cpp"
@@ -43,5 +32,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Quick
-    rectangle
+    libs
 )

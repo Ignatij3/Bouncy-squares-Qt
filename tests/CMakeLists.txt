@@ -19,10 +19,15 @@ include_directories(
     "src/rectangle"
     "src/shape"
     "src/vector"
+    "../libs/float"
+    "../libs/geometry"
+    "../libs/object_handler"
+    "../libs/rectangle"
+    "../libs/shape"
 )
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
-file(GLOB_RECURSE HEADERS "src/*.hpp")
+file(GLOB_RECURSE SOURCES "../libs/*.cpp" "src/*.cpp")
+file(GLOB_RECURSE HEADERS "../libs/*.hpp" "src/*.hpp")
 
 add_executable(main "main.cpp" ${SOURCES} ${HEADERS})
 target_link_libraries(main gtest_main)

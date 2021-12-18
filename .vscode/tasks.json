@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "rm",
             "args": [
-                "${workspaceFolder}/bin",
+                "${workspaceFolder}/bin/*",
                 "-r",
                 "-Force"
             ],

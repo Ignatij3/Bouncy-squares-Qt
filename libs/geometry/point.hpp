@@ -2,7 +2,7 @@
 #define BOUNCY_SQUARE_LIBS_GEOMETRY_POINT_HPP
 
 #include "float.hpp"
-
+   
 namespace shape
 {
     struct Point {
