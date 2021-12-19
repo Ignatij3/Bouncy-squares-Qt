@@ -2,46 +2,78 @@
 #define BOUNCY_SQUARE_LIBS_GEOMETRY_POINT_HPP
 
 #include "float.hpp"
-   
+
 namespace shape
 {
+    template <class T>
     struct Point {
-        double x, y;
+        T x, y;
 
         Point() noexcept;
-        Point(double x, double y) noexcept;
+        Point(T x, T y) noexcept;
 
-        double x_diff(const Point& rhs) const noexcept;
-        double y_diff(const Point& rhs) const noexcept;
+        T x_diff(const Point& rhs) const noexcept;
+        T y_diff(const Point& rhs) const noexcept;
         bool operator==(const Point& rhs) const noexcept;
         const Point operator-(const Point& rhs) const noexcept;
         const Point operator+(const Point& rhs) const noexcept;
     };
 }
 
-inline double shape::Point::x_diff(const Point& rhs) const noexcept
+template <class T>
+shape::Point<T>::Point() noexcept :
+    x(0), y(0) { }
+
+template <class T>
+shape::Point<T>::Point(T x, T y) noexcept :
+    x(x), y(y) { }
+
+template <class T>
+inline T shape::Point<T>::x_diff(const Point<T>& rhs) const noexcept
 {
     return this->x - rhs.x;
 }
 
-inline double shape::Point::y_diff(const Point& rhs) const noexcept
+template <class T>
+inline T shape::Point<T>::y_diff(const Point<T>& rhs) const noexcept
 {
     return this->y - rhs.y;
 }
 
-inline bool shape::Point::operator==(const Point& rhs) const noexcept
+template <class T>
+inline bool shape::Point<T>::operator==(const Point<T>& rhs) const noexcept
+{
+    return x == rhs.x && y == rhs.y;
+}
+
+template <>
+inline bool shape::Point<float>::operator==(const Point<float>& rhs) const noexcept
 {
     return almost_equal(x, rhs.x, 0.4) && almost_equal(y, rhs.y, 0.4);
 }
 
-inline const shape::Point shape::Point::operator-(const Point& rhs) const noexcept
+template <>
+inline bool shape::Point<double>::operator==(const Point<double>& rhs) const noexcept
 {
-    return shape::Point(this->x_diff(rhs), this->y_diff(rhs));
+    return almost_equal(x, rhs.x, 0.4) && almost_equal(y, rhs.y, 0.4);
 }
 
-inline const shape::Point shape::Point::operator+(const Point& rhs) const noexcept
+template <>
+inline bool shape::Point<long double>::operator==(const Point<long double>& rhs) const noexcept
 {
-    return shape::Point(this->x + rhs.x, this->y + rhs.y);
+    return almost_equal(x, rhs.x, 0.4) && almost_equal(y, rhs.y, 0.4);
+}
+
+template <class T>
+inline const shape::Point<T> shape::Point<T>::operator-(const Point<T>& rhs) const noexcept
+{
+    return shape::Point<T>(this->x_diff(rhs), this->y_diff(rhs));
+}
+
+template <class T>
+inline const shape::Point<T> shape::Point<T>::operator+(const Point<T>& rhs) const noexcept
+{
+    return shape::Point<T>(this->x + rhs.x, this->y + rhs.y);
 }
 
 #endif // BOUNCY_SQUARE_LIBS_GEOMETRY_POINT_HPP

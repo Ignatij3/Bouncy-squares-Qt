@@ -3,18 +3,18 @@
 
 #include "point.hpp"
 
-// vector defined with starting point and vector going from that point
+// vector defined with starting Point<double>and vector going from that point
 namespace shape
 {
     class Vector {
         double angle;
 
       public:
-        Point a;
-        Point b;
+        Point<double> a;
+        Point<double> b;
 
         Vector();
-        Vector(Point point, Point vector) noexcept;
+        Vector(Point<double> point, Point<double> vector) noexcept;
         Vector(double x1, double y1, double x2, double y2) noexcept;
         Vector(const Vector& rhs) noexcept;
 
@@ -23,7 +23,7 @@ namespace shape
         double magnitude() const noexcept;
         double slope() const noexcept;
         bool lies_between(const Vector& outsideVector) const noexcept;
-        void set_vectors(Point point, Point vector) noexcept;
+        void set_vectors(Point<double> point, Point<double> vector) noexcept;
         void set_vectors(double x1, double y1, double x2, double y2) noexcept;
         bool cross(const Vector& lineb) const noexcept;
 

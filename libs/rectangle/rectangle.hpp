@@ -35,7 +35,7 @@ namespace shape
         void SetSidesSetAngle() noexcept override;
 
       public:
-        MyRectangle(Movement move, Point centreCoords, double width, double height, double alpha);
+        MyRectangle(Movement move, Point<double> centreCoords, double width, double height, double alpha);
         MyRectangle(Movement move, double centreX, double centreY, double width, double height, double alpha);
         ~MyRectangle();
 

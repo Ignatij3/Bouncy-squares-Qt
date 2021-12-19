@@ -9,7 +9,7 @@
 #include <string>
 
 std::pair<double, double> convert_to_cartesian(double x, double y);
-shape::Point convert_to_cartesian(shape::Point a);
+shape::Point<double> convert_to_cartesian(shape::Point<double> a);
 
 class ObjectHandler {
   private:
@@ -36,10 +36,10 @@ inline std::pair<double, double> convert_to_cartesian(double x, double y)
     return std::make_pair(x, ObjectHandler::window_height - y);
 }
 
-inline shape::Point convert_to_cartesian(shape::Point a)
+inline shape::Point<double> convert_to_cartesian(shape::Point<double> a)
 {
     std::pair<double, double> pt = convert_to_cartesian(a.x, a.y);
-    return shape::Point(pt.first, pt.second);
+    return shape::Point<double>(pt.first, pt.second);
 }
 
 inline void ObjectHandler::add_object(shape::Shape* figure)

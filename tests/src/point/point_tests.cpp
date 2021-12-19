@@ -6,8 +6,8 @@
 
 TEST(PointClassTest, HandlesZeroCoords)
 {
-    shape::Point a;
-    shape::Point b;
+    shape::Point<double> a;
+    shape::Point<double> b;
 }
 
 TEST(PointClassTest, HandlesNegativeCoords)

@@ -6,7 +6,7 @@
 #include <cmath>
 #include <vector>
 
-shape::Shape::Shape(Movement move, Point centreCoords, double width, double height, double alpha) noexcept :
+shape::Shape::Shape(Movement move, Point<double> centreCoords, double width, double height, double alpha) noexcept :
     centre(centreCoords),
     angle((alpha < 0) ? 0
                       : ((alpha > 360) ? 360 : alpha)),
@@ -89,7 +89,7 @@ std::pair<shape::Vector*, shape::Vector*> shape::Shape::FindSidesToReflect(std::
     return resulting_vectors;
 }
 
-std::pair<bool, shape::Vector*> shape::Shape::LiesOnLine(std::vector<Vector*>& sides, const Point& angle) const noexcept
+std::pair<bool, shape::Vector*> shape::Shape::LiesOnLine(std::vector<Vector*>& sides, const Point<double>& angle) const noexcept
 {
 
     std::size_t sideAmt = sides.size();

@@ -7,7 +7,7 @@
 
 shape::Vector::Vector() { }
 
-shape::Vector::Vector(Point point, Point vector) noexcept :
+shape::Vector::Vector(Point<double> point, Point<double> vector) noexcept :
     a(point),
     b(vector)
 {
@@ -15,7 +15,7 @@ shape::Vector::Vector(Point point, Point vector) noexcept :
 }
 
 shape::Vector::Vector(double x1, double y1, double x2, double y2) noexcept :
-    Vector(Point(x1, y1), Point(x2, y2))
+    Vector(Point<double>(x1, y1), Point<double>(x2, y2))
 {
     set_angle();
 }
@@ -50,7 +50,7 @@ void shape::Vector::set_angle() noexcept
     angle = (angle < 0) ? 360 + angle : angle;
 }
 
-void shape::Vector::set_vectors(Point point, Point vector) noexcept
+void shape::Vector::set_vectors(Point<double> point, Point<double> vector) noexcept
 {
     a.x = point.x;
     a.y = point.y;

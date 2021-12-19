@@ -17,7 +17,7 @@ namespace shape
 
     class Shape {
       private:
-        std::pair<bool, Vector*> LiesOnLine(std::vector<Vector*>& sides, const Point& angle) const noexcept;
+        std::pair<bool, Vector*> LiesOnLine(std::vector<Vector*>& sides, const Point<double>& angle) const noexcept;
         std::pair<Vector*, Vector*> FindSidesToReflect(std::vector<Vector*>& shapeSides, std::vector<Vector*>& otherShapeSides, int sideIndex, int otherSideIndex) const noexcept;
 
       protected:
@@ -34,7 +34,7 @@ namespace shape
 
       public:
         double angle;
-        Point centre;
+        Point<double> centre;
         QPointF q_centre;
         QColor color = "black";
 
@@ -42,7 +42,7 @@ namespace shape
         virtual const int constexpr side_amount() const = 0;
         virtual void move()                             = 0;
 
-        Shape(Movement move, Point coords, double width, double height, double alpha) noexcept;
+        Shape(Movement move, Point<double> coords, double width, double height, double alpha) noexcept;
         Shape() noexcept;
 
         void set_direction() noexcept;
