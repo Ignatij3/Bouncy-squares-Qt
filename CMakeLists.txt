@@ -15,6 +15,7 @@ find_package(QT NAMES Qt6 COMPONENTS Qml Core Gui Quick REQUIRED)
 find_package(Qt6 COMPONENTS Qml Core Gui Quick REQUIRED)
 
 add_subdirectory("libs")
+add_subdirectory("tests" EXCLUDE_FROM_ALL)
 
 list(APPEND SOURCES
     "src/main.cpp"
