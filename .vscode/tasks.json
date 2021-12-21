@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "rm",
             "args": [
-                "${workspaceFolder}/bin/*",
+                "bin/*",
                 "-r",
                 "-Force"
             ],
@@ -24,8 +24,8 @@
                 "-DCMAKE_BUILD_TYPE:STRING=Debug",
                 "-DCMAKE_C_COMPILER:FILEPATH=C:/msys64/mingw64/bin/gcc.exe",
                 "-DCMAKE_CXX_COMPILER:FILEPATH=C:/msys64/mingw64/bin/g++.exe",
-                "-H${workspaceFolder}",
-                "-B${workspaceFolder}/build",
+                "-H.",
+                "-Bbuild",
                 "-G",
                 "NMake Makefiles JOM"
             ],
@@ -46,22 +46,22 @@
                 "-DCMAKE_BUILD_TYPE:STRING=Debug",
                 "-DCMAKE_C_COMPILER:FILEPATH=C:/msys64/mingw64/bin/gcc.exe",
                 "-DCMAKE_CXX_COMPILER:FILEPATH=C:/msys64/mingw64/bin/g++.exe",
-                "-H${workspaceFolder}/tests",
-                "-B${workspaceFolder}/tests/build",
+                "-Htests",
+                "-Btests/build",
                 "-G",
                 "NMake Makefiles JOM"
             ],
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
         },
         {
             "label": "Build project",
-            "type": "cppbuild",
+            "type": "shell",
             "command": "cmake",
             "args": [
                 "--build",
-                "${workspaceFolder}/build",
+                "build",
                 "--config",
                 "Debug",
                 "--target",
@@ -76,11 +76,11 @@
         },
         {
             "label": "Build tests",
-            "type": "cppbuild",
+            "type": "shell",
             "command": "cmake",
             "args": [
                 "--build",
-                "${workspaceFolder}/tests/build",
+                "tests/build",
                 "--config",
                 "Debug",
                 "--target",
@@ -98,11 +98,14 @@
             "type": "shell",
             "command": "windeployqt",
             "args": [
-                "${workspaceFolder}/bin",
+                "bin",
                 "--release",
                 "--qmldir",
-                "${workspaceFolder}"
-            ]
+                "."
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
         },
         {
             "label": "Recompile completely",
