@@ -4,7 +4,9 @@
 #include <cmath>
 
 const double PI = 3.14159265;
-inline bool almost_equal(double a, double b, double epsilon)
+
+template <class T>
+inline bool almost_equal(T a, T b, double epsilon)
 {
     return std::abs(b - a) <= epsilon;
 }
