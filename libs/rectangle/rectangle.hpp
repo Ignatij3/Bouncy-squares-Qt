@@ -32,7 +32,6 @@ namespace shape
         double RightX() const noexcept override;
         double LowerY() const noexcept override;
         void SetSides() noexcept override;
-        void SetSidesSetAngle() noexcept override;
 
       public:
         MyRectangle(Movement move, Point<double> centreCoords, double width, double height, double alpha);

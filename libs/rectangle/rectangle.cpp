@@ -13,15 +13,6 @@ void shape::MyRectangle::SetSides() noexcept
     sides[3]->set_vectors(lx, ly, width * 2, 0);  // bottom side
 }
 
-void shape::MyRectangle::SetSidesSetAngle() noexcept
-{
-    SetSides();
-    sides[0]->set_angle();
-    sides[1]->set_angle();
-    sides[2]->set_angle();
-    sides[3]->set_angle();
-}
-
 shape::MyRectangle::MyRectangle(Movement move, Point<double> coords, double width, double height, double alpha) :
     Shape(move, coords, width, height, alpha),
     width((width < 0) ? 0 : width / 2),
@@ -31,7 +22,7 @@ shape::MyRectangle::MyRectangle(Movement move, Point<double> coords, double widt
         sides.push_back(new Vector);
 
     set_direction();
-    SetSidesSetAngle();
+    SetSides();
 }
 
 shape::MyRectangle::MyRectangle(Movement move, double centreX, double centreY, double width, double height, double alpha) :

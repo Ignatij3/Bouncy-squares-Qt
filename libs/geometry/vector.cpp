@@ -8,17 +8,10 @@
 shape::Vector::Vector() { }
 
 shape::Vector::Vector(Point<double> point, Point<double> vector) noexcept :
-    a(point),
-    b(vector)
-{
-    set_angle();
-}
+    a(point), b(vector) { SetAngle(); }
 
 shape::Vector::Vector(double x1, double y1, double x2, double y2) noexcept :
-    Vector(Point<double>(x1, y1), Point<double>(x2, y2))
-{
-    set_angle();
-}
+    Vector(Point<double>(x1, y1), Point<double>(x2, y2)) { SetAngle(); }
 
 shape::Vector::Vector(const Vector& rhs) noexcept
 {
@@ -29,25 +22,19 @@ shape::Vector::Vector(const Vector& rhs) noexcept
 
 double shape::Vector::slope() const noexcept
 {
-    return (almost_equal(a.x_diff(b), 0, 1)) ? 0 : a.y_diff(b) / a.x_diff(b);
+    return (almost_equal<double>(a.subx(b), 0, 1e-20)) ? 0 : a.suby(b) / a.subx(b);
 }
 
-bool shape::Vector::lies_between(const Vector& outsideVector) const noexcept
+bool shape::Vector::lies_inside(const Vector& outsideVector) const noexcept
 {
     double lowY  = outsideVector.lowest_y();
     double highY = outsideVector.highest_y();
     double lowX  = outsideVector.lowest_x();
     double highX = outsideVector.highest_x();
 
-    bool secondX = (highX > this->b.x || almost_equal(highX, this->b.x, 1)) && (this->b.x > lowX || almost_equal(this->b.x, lowX, 1));
-    bool secondY = (highY > this->b.y || almost_equal(highY, this->b.y, 1)) && (this->b.y > lowY || almost_equal(this->b.y, lowY, 1));
+    bool secondX = (highX > b.x || almost_equal(highX, b.x, .4)) && (b.x > lowX || almost_equal(b.x, lowX, .4));
+    bool secondY = (highY > b.y || almost_equal(highY, b.y, .4)) && (b.y > lowY || almost_equal(b.y, lowY, .4));
     return secondX && secondY;
-}
-
-void shape::Vector::set_angle() noexcept
-{
-    angle = atan2(a.y_diff(b), a.x_diff(b)) * (180 / PI);
-    angle = (angle < 0) ? 360 + angle : angle;
 }
 
 void shape::Vector::set_vectors(Point<double> point, Point<double> vector) noexcept
@@ -56,6 +43,7 @@ void shape::Vector::set_vectors(Point<double> point, Point<double> vector) noexc
     a.y = point.y;
     b.x = point.x + vector.x;
     b.y = point.y + vector.y;
+    SetAngle();
 }
 
 void shape::Vector::set_vectors(double x1, double y1, double x2, double y2) noexcept
@@ -64,6 +52,7 @@ void shape::Vector::set_vectors(double x1, double y1, double x2, double y2) noex
     a.y = y1;
     b.x = x1 + x2;
     b.y = y1 + y2;
+    SetAngle();
 }
 
 bool shape::Vector::cross(const Vector& lineb) const noexcept
@@ -92,8 +81,8 @@ bool shape::Vector::cross(const Vector& lineb) const noexcept
 
 double shape::Vector::magnitude() const noexcept
 {
-    double x_diff_squared = a.x_diff(b) * a.x_diff(b);
-    double y_diff_squared = a.y_diff(b) * a.y_diff(b);
+    double x_diff_squared = a.subx(b) * a.subx(b);
+    double y_diff_squared = a.suby(b) * a.suby(b);
 
     return sqrt(x_diff_squared + y_diff_squared);
 }
@@ -101,10 +90,10 @@ double shape::Vector::magnitude() const noexcept
 // calculates determinant
 int shape::Vector::operator^(Vector& rhs) const noexcept
 {
-    int x1 = b.x_diff(a);
-    int y1 = b.y_diff(a);
-    int x2 = rhs.b.x_diff(rhs.a);
-    int y2 = rhs.b.y_diff(rhs.a);
+    int x1 = b.subx(a);
+    int y1 = b.suby(a);
+    int x2 = rhs.b.subx(rhs.a);
+    int y2 = rhs.b.suby(rhs.a);
 
     return x1 * y2 - x2 * y1;
 }
@@ -125,4 +114,10 @@ shape::Vector& shape::Vector::operator=(Vector&& rhs) noexcept
     angle = rhs.angle;
 
     return *this;
+}
+
+void shape::Vector::SetAngle() noexcept
+{
+    angle = atan2(b.suby(a), b.subx(a)) * (180 / PI);
+    angle = (angle < 0) ? 360 + angle : angle;
 }

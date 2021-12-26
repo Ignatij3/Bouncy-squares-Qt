@@ -1,4 +1,5 @@
 #include "point_tests.hpp"
+#include "vector_tests.hpp"
 
 #include <gtest/gtest.h>
 

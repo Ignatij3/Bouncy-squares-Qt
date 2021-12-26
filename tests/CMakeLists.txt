@@ -24,21 +24,12 @@ if (NOT TARGET libs)
     add_subdirectory("../libs" "build")
 endif()
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
 file(GLOB_RECURSE HEADERS "src/*.hpp")
 
 add_executable(main
-    "main.cpp"
+    "src/main.cpp"
     ${SOURCES}
     ${HEADERS}
-)
-
-target_include_directories(main PRIVATE
-    "src/object_handler"
-    "src/point"
-    "src/rectangle"
-    "src/shape"
-    "src/vector"
 )
 
 target_link_libraries(main PRIVATE

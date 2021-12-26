@@ -12,8 +12,8 @@ namespace shape
         Point() noexcept;
         Point(T x, T y) noexcept;
 
-        T x_diff(const Point& rhs) const noexcept;
-        T y_diff(const Point& rhs) const noexcept;
+        T subx(const Point& rhs) const noexcept;
+        T suby(const Point& rhs) const noexcept;
         bool operator==(const Point& rhs) const noexcept;
         const Point operator-(const Point& rhs) const noexcept;
         const Point operator+(const Point& rhs) const noexcept;
@@ -29,13 +29,13 @@ shape::Point<T>::Point(T x, T y) noexcept :
     x(x), y(y) { }
 
 template <class T>
-inline T shape::Point<T>::x_diff(const Point<T>& rhs) const noexcept
+inline T shape::Point<T>::subx(const Point<T>& rhs) const noexcept
 {
     return x - rhs.x;
 }
 
 template <class T>
-inline T shape::Point<T>::y_diff(const Point<T>& rhs) const noexcept
+inline T shape::Point<T>::suby(const Point<T>& rhs) const noexcept
 {
     return y - rhs.y;
 }
@@ -73,7 +73,7 @@ inline bool shape::Point<long long>::operator==(const Point<long long>& rhs) con
 template <class T>
 inline const shape::Point<T> shape::Point<T>::operator-(const Point<T>& rhs) const noexcept
 {
-    return shape::Point<T>(x_diff(rhs), y_diff(rhs));
+    return shape::Point<T>(subx(rhs), suby(rhs));
 }
 
 template <class T>

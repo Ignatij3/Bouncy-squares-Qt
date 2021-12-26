@@ -102,7 +102,7 @@ std::pair<bool, shape::Vector*> shape::Shape::LiesOnLine(std::vector<Vector*>& s
             return std::make_pair(true, otherVec); // vector, perpendicular to incoming angle
         }
 
-        if (almost_equal(otherVec->slope(), temp.slope(), 0.01) && temp.lies_between(*otherVec)) // lies on the same line as the vector does and is between endpoints
+        if (almost_equal(otherVec->slope(), temp.slope(), 0.01) && temp.lies_inside(*otherVec)) // lies on the same line as the vector does and is between endpoints
         {
             return std::make_pair(true, otherVec);
         }

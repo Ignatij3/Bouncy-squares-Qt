@@ -25,12 +25,11 @@ namespace shape
         std::vector<Vector*> sides;
         std::pair<double, double> direction;
 
-        virtual double LeftX() const    = 0;
-        virtual double UpperY() const   = 0;
-        virtual double RightX() const   = 0;
-        virtual double LowerY() const   = 0;
-        virtual void SetSides()         = 0;
-        virtual void SetSidesSetAngle() = 0;
+        virtual double LeftX() const  = 0;
+        virtual double UpperY() const = 0;
+        virtual double RightX() const = 0;
+        virtual double LowerY() const = 0;
+        virtual void SetSides()       = 0;
 
       public:
         double angle;
