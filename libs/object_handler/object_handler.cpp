@@ -20,9 +20,7 @@ ObjectHandler::ObjectHandler(int fps) :
 void ObjectHandler::add_object(std::initializer_list<std::pair<shape::Shape*, QColor>> il)
 {
     for (auto obj : il)
-    {
         add_object(obj.first, obj.second);
-    }
 }
 
 // check for collisions between objects

@@ -51,15 +51,9 @@ std::pair<bool, std::pair<const shape::Vector*, const shape::Vector*>> shape::Sh
     std::vector<Vector*> other_sides = other->get_sides();
 
     for (int i = 0; i < side_amount(); ++i)
-    {
         for (int j = 0; j < other->side_amount(); ++j)
-        {
             if (sides[i]->cross(*other_sides[j]))
-            {
                 return { true, FindSidesToReflect(sides, other_sides, i, j) };
-            }
-        }
-    }
 
     return { false, { reinterpret_cast<Vector*>(0xffffffffffffffff), nullptr } };
 }
@@ -68,18 +62,18 @@ std::pair<shape::Vector*, shape::Vector*> shape::Shape::FindSidesToReflect(std::
 {
     std::pair<Vector*, Vector*> resulting_vectors; // first vector - side of first shape, second - of second shape
 
-    if (std::pair<bool, Vector*> res = LiesOnLine(shapeSides, otherShapeSides[otherSideIndex]->a); res.first) // check whether and which side does first angle of first collided vector touch
+    if (auto res = LiesOnLine(shapeSides, otherShapeSides[otherSideIndex]->a); res.first) // check whether and which side does first angle of first collided vector touch
         resulting_vectors.first = res.second;
-    else if (std::pair<bool, Vector*> res = LiesOnLine(shapeSides, otherShapeSides[otherSideIndex]->b); res.first) // second angle of first vector
+    else if (auto res = LiesOnLine(shapeSides, otherShapeSides[otherSideIndex]->b); res.first) // second angle of first vector
         resulting_vectors.first = res.second;
     else
     {
         resulting_vectors.first = shapeSides[sideIndex];
     }
 
-    if (std::pair<bool, Vector*> res = LiesOnLine(otherShapeSides, shapeSides[sideIndex]->a); res.first) // first angle of second vector
+    if (auto res = LiesOnLine(otherShapeSides, shapeSides[sideIndex]->a); res.first) // first angle of second vector
         resulting_vectors.second = res.second;
-    else if (std::pair<bool, Vector*> res = LiesOnLine(otherShapeSides, shapeSides[sideIndex]->b); res.first) // second angle of second vector
+    else if (auto res = LiesOnLine(otherShapeSides, shapeSides[sideIndex]->b); res.first) // second angle of second vector
         resulting_vectors.second = res.second;
     else // side is too big or touched angle
     {
@@ -97,15 +91,11 @@ std::pair<bool, shape::Vector*> shape::Shape::LiesOnLine(std::vector<Vector*>& s
     {
         Vector* otherVec = sides[i];
         Vector temp(otherVec->a, angle);
-        if (sides[i]->a == angle) // angle touches angle of line
-        {
+        if (sides[i]->a == angle)      // angle touches angle of line
             return { true, otherVec }; // vector, perpendicular to incoming angle
-        }
 
         if (almost_equal(otherVec->slope(), temp.slope(), 0.01) && temp.lies_inside(*otherVec)) // lies on the same line as the vector does and is between endpoints
-        {
             return { true, otherVec };
-        }
     }
 
     return { false, nullptr };
