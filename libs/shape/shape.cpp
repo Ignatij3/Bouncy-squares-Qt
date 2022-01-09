@@ -16,9 +16,9 @@ shape::Shape::Shape(Movement move, Point<double> centreCoords, double width, dou
     double half_height = height / 2;
 
     centre.x = (centre.x < half_width) ? half_width
-                                       : ((centre.x > (ObjectHandler::window_width - half_width)) ? (ObjectHandler::window_width - half_width) : centre.x);
+                                       : ((centre.x > (WINDOW_WIDTH - half_width)) ? (WINDOW_WIDTH - half_width) : centre.x);
     centre.y = (centre.y < half_height) ? half_height
-                                        : ((centre.y > (ObjectHandler::window_height - half_height)) ? (ObjectHandler::window_height - half_height) : centre.y);
+                                        : ((centre.y > (WINDOW_HEIGHT - half_height)) ? (WINDOW_HEIGHT - half_height) : centre.y);
 
     centre   = convert_to_cartesian(centre);
     q_centre = QPointF(centre.x, centre.y);
@@ -56,12 +56,12 @@ std::pair<bool, std::pair<const shape::Vector*, const shape::Vector*>> shape::Sh
         {
             if (sides[i]->cross(*other_sides[j]))
             {
-                return std::make_pair(true, FindSidesToReflect(sides, other_sides, i, j));
+                return { true, FindSidesToReflect(sides, other_sides, i, j) };
             }
         }
     }
 
-    return std::make_pair(false, std::make_pair(reinterpret_cast<Vector*>(0xffffffffffffffff), nullptr));
+    return { false, { reinterpret_cast<Vector*>(0xffffffffffffffff), nullptr } };
 }
 
 std::pair<shape::Vector*, shape::Vector*> shape::Shape::FindSidesToReflect(std::vector<Vector*>& shapeSides, std::vector<Vector*>& otherShapeSides, int sideIndex, int otherSideIndex) const noexcept
@@ -99,14 +99,14 @@ std::pair<bool, shape::Vector*> shape::Shape::LiesOnLine(std::vector<Vector*>& s
         Vector temp(otherVec->a, angle);
         if (sides[i]->a == angle) // angle touches angle of line
         {
-            return std::make_pair(true, otherVec); // vector, perpendicular to incoming angle
+            return { true, otherVec }; // vector, perpendicular to incoming angle
         }
 
         if (almost_equal(otherVec->slope(), temp.slope(), 0.01) && temp.lies_inside(*otherVec)) // lies on the same line as the vector does and is between endpoints
         {
-            return std::make_pair(true, otherVec);
+            return { true, otherVec };
         }
     }
 
-    return std::make_pair(false, nullptr);
+    return { false, nullptr };
 }

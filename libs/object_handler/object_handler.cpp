@@ -7,11 +7,22 @@
 #include <thread>
 #include <vector>
 
+int WINDOW_WIDTH  = 0;
+int WINDOW_HEIGHT = 0;
+
 ObjectHandler::ObjectHandler(int fps) :
-    window_frame(shape::Movement::STATIC, ObjectHandler::window_width / 2, ObjectHandler::window_height / 2, ObjectHandler::window_width, ObjectHandler::window_height, 0),
+    window_frame(shape::Movement::STATIC, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT, 0),
     fps(fps)
 {
     objects.insert(objects.begin(), &window_frame);
+}
+
+void ObjectHandler::add_object(std::initializer_list<std::pair<shape::Shape*, QColor>> il)
+{
+    for (auto obj : il)
+    {
+        add_object(obj.first, obj.second);
+    }
 }
 
 // check for collisions between objects
@@ -41,8 +52,8 @@ void ObjectHandler::manage_collisions() const noexcept
 
 void ObjectHandler::move_all() noexcept
 {
-    for (auto obj = objects.begin(); obj != objects.end(); ++obj)
-        (*obj)->move();
+    for (auto obj : objects)
+        obj->move();
 }
 
 void ObjectHandler::run() noexcept

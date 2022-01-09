@@ -12,8 +12,8 @@
 
 int main(int argc, char* argv[])
 {
-    ObjectHandler::window_width  = 1200;
-    ObjectHandler::window_height = 720;
+    WINDOW_WIDTH  = 1200;
+    WINDOW_HEIGHT = 720;
     ObjectHandler handler(210);
 
     QGuiApplication app(argc, argv);
@@ -25,11 +25,7 @@ int main(int argc, char* argv[])
     shape::MyRectangle rect4(shape::Movement::DYNAMIC, 600, 400, 50, 50, 180);
     shape::MyRectangle rect5(shape::Movement::DYNAMIC, 100, 20, 5, 5, 350);
 
-    handler.add_object(&rect1, "darkred");
-    handler.add_object(&rect2, "orange");
-    handler.add_object(&rect3, "green");
-    handler.add_object(&rect4, "blue");
-    handler.add_object(&rect5, "yellow");
+    handler.add_object({ { &rect1, "darkred" }, { &rect2, "orange" }, { &rect3, "green" }, { &rect4, "blue" }, { &rect5, "yellow" } });
 
     engine.rootContext()->setContextProperty("rect1", &rect1);
     engine.rootContext()->setContextProperty("rect2", &rect2);
