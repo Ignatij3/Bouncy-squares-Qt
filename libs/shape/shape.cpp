@@ -24,16 +24,20 @@ shape::Shape::Shape(Movement move, Point<double> centreCoords, double width, dou
     q_centre = QPointF(centre.x, centre.y);
     movement_toggle(move);
 
+#ifndef NDEBUG
     object_amount++;
     LOG_INFO("New object added, total objects: " << object_amount)
+#endif // NDEBUG
 }
 
 shape::Shape::Shape() noexcept { }
 
 shape::Shape::~Shape()
 {
+#ifndef NDEBUG
     object_amount--;
     LOG_INFO("Object deleted, total objects: " << object_amount)
+#endif // NDEBUG
 }
 
 void shape::Shape::reflect(double otherVectorAngle) noexcept
