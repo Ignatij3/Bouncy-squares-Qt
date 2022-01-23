@@ -1,12 +1,15 @@
 #ifndef BOUNCY_SQUARE_LIBS_SHAPE_SHAPE_HPP
 #define BOUNCY_SQUARE_LIBS_SHAPE_SHAPE_HPP
 
+#include "logging.hpp"
 #include "vector.hpp"
 
 #include <QColor>
 #include <QPointF>
 #include <utility>
 #include <vector>
+
+static unsigned int object_amount;
 
 namespace shape
 {
@@ -43,6 +46,7 @@ namespace shape
 
         Shape(Movement move, Point<double> coords, double width, double height, double alpha) noexcept;
         Shape() noexcept;
+        virtual ~Shape() noexcept;
 
         void set_direction() noexcept;
         void reflect(double otherVectorAngle) noexcept;

@@ -22,6 +22,7 @@ add_subdirectory("rectangle")
 target_include_directories(libs PUBLIC
     "float"
     "geometry"
+    "logging"
     "object_handler"
     "rectangle"
     "shape"

@@ -1,3 +1,4 @@
+#include "logging.hpp"
 #include "object_handler.hpp"
 #include "point.hpp"
 #include "rectangle.hpp"
@@ -12,6 +13,8 @@
 
 int main(int argc, char* argv[])
 {
+    SET_LOGGING_LEVEL("info")
+
     WINDOW_WIDTH  = 1200;
     WINDOW_HEIGHT = 720;
     ObjectHandler handler(210);

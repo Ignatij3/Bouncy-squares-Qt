@@ -36,7 +36,7 @@ namespace shape
       public:
         MyRectangle(Movement move, Point<double> centreCoords, double width, double height, double alpha);
         MyRectangle(Movement move, double centreX, double centreY, double width, double height, double alpha);
-        ~MyRectangle();
+        virtual ~MyRectangle();
 
         MyRectangle static InitFromStdin();
         std::vector<Vector*> get_sides() const noexcept override;

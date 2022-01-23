@@ -23,9 +23,18 @@ shape::Shape::Shape(Movement move, Point<double> centreCoords, double width, dou
     centre   = convert_to_cartesian(centre);
     q_centre = QPointF(centre.x, centre.y);
     movement_toggle(move);
+
+    object_amount++;
+    LOG_INFO("New object added, total objects: " << object_amount)
 }
 
 shape::Shape::Shape() noexcept { }
+
+shape::Shape::~Shape()
+{
+    object_amount--;
+    LOG_INFO("Object deleted, total objects: " << object_amount)
+}
 
 void shape::Shape::reflect(double otherVectorAngle) noexcept
 {
@@ -67,18 +76,14 @@ std::pair<shape::Vector*, shape::Vector*> shape::Shape::FindSidesToReflect(std::
     else if (auto res = LiesOnLine(shapeSides, otherShapeSides[otherSideIndex]->b); res.first) // second angle of first vector
         resulting_vectors.first = res.second;
     else
-    {
         resulting_vectors.first = shapeSides[sideIndex];
-    }
 
     if (auto res = LiesOnLine(otherShapeSides, shapeSides[sideIndex]->a); res.first) // first angle of second vector
         resulting_vectors.second = res.second;
     else if (auto res = LiesOnLine(otherShapeSides, shapeSides[sideIndex]->b); res.first) // second angle of second vector
         resulting_vectors.second = res.second;
     else // side is too big or touched angle
-    {
         resulting_vectors.second = otherShapeSides[otherSideIndex];
-    }
 
     return resulting_vectors;
 }
