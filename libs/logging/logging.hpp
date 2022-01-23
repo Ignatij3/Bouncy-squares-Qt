@@ -22,6 +22,9 @@ static short LOGGING_LEVEL;
     case str2int("critical"):    \
         LOGGING_LEVEL = 2;       \
         break;                   \
+    case str2int("none"):        \
+        LOGGING_LEVEL = 3;       \
+        break;                   \
     }
 
 #define LOG_INFO(msg) \
