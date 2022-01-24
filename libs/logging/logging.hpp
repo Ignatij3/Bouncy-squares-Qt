@@ -3,11 +3,24 @@
 
 #include <iostream>
 
-#define LOG_INFO(msg)     std::cout << "LOG INFO: " << msg << " (" << __FILE__ << ":" << __LINE__ << ")" << std::endl;
-#define LOG_WARNING(msg)  std::cout << "LOG WARN: " << msg << " (" << __FILE__ << ":" << __LINE__ << ")" << std::endl;
-#define LOG_CRITICAL(msg) std::cout << "LOG CRIT: " << msg << " (" << __FILE__ << ":" << __LINE__ << ")" << std::endl;
-
 static short LOGGING_LEVEL;
+
+#ifndef NDEBUG
+
+#define LOG_INFO(msg) \
+    if (LOGGING_LEVEL == 0) { std::cout << "LOG INFO: " << msg << " (" << __FILE__ << ":" << __LINE__ << ")" << std::endl; }
+#define LOG_WARNING(msg) \
+    if (LOGGING_LEVEL <= 1) { std::cout << "LOG WARN: " << msg << " (" << __FILE__ << ":" << __LINE__ << ")" << std::endl; }
+#define LOG_CRITICAL(msg) \
+    if (LOGGING_LEVEL <= 2) { std::cout << "LOG CRIT: " << msg << " (" << __FILE__ << ":" << __LINE__ << ")" << std::endl; }
+
+#else
+
+#define LOG_INFO(msg)
+#define LOG_WARNING(msg)
+#define LOG_CRITICAL(msg)
+
+#endif // NDEBUG
 
 constexpr unsigned int str2int(const char* str, int h = 0)
 {
