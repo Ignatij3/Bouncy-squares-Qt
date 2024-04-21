@@ -6,28 +6,41 @@
             "type": "shell",
             "command": "rm",
             "args": [
-                "bin/*",
-                "-r",
-                "-Force"
+                "-rf",
+                "bin/*"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
             }
         },
         {
-            "label": "Configure project",
+            "label": "Empty build folder",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "build/*"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Create build files",
             "type": "shell",
             "command": "cmake",
             "args": [
                 "--no-warn-unused-cli",
                 "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE",
-                "-DCMAKE_BUILD_TYPE:STRING=Debug",
-                "-DCMAKE_C_COMPILER:FILEPATH=C:/msys64/mingw64/bin/gcc.exe",
-                "-DCMAKE_CXX_COMPILER:FILEPATH=C:/msys64/mingw64/bin/g++.exe",
+                "-DCMAKE_BUILD_TYPE:STRING=Release",
+                "-DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc",
+                "-DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++",
+                "-DCMAKE_INSTALL_PREFIX=${workspaceFolder}",
                 "-H${workspaceFolder}",
+                "-DQt6_DIR=~/Qt/6.5.0/gcc_64/lib/cmake/Qt6",
                 "-Bbuild",
                 "-G",
-                "NMake Makefiles JOM"
+                "Ninja"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -44,12 +57,13 @@
                 "--no-warn-unused-cli",
                 "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE",
                 "-DCMAKE_BUILD_TYPE:STRING=Debug",
-                "-DCMAKE_C_COMPILER:FILEPATH=C:/msys64/mingw64/bin/gcc.exe",
-                "-DCMAKE_CXX_COMPILER:FILEPATH=C:/msys64/mingw64/bin/g++.exe",
+                "-DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc",
+                "-DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++",
                 "-Htests",
+                "-DQt6_DIR=~/Qt/6.5.0/gcc_64/lib/cmake/Qt6",
                 "-Btests/build",
                 "-G",
-                "NMake Makefiles JOM"
+                "Ninja"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -63,7 +77,7 @@
                 "--build",
                 "build",
                 "--config",
-                "Debug",
+                "Release",
                 "--target",
                 "all"
             ],
@@ -94,17 +108,22 @@
             ]
         },
         {
+            "label": "Compile executable",
+            "type": "shell",
+            "command": "ninja",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            }
+        },
+        {
             "label": "Add dependencies",
             "type": "shell",
-            "command": "windeployqt",
+            "command": "ninja",
             "args": [
-                "bin",
-                "--release",
-                "--qmldir",
-                "."
+                "install"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/build"
             }
         },
         {
@@ -112,9 +131,11 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "Empty bin folder",
-                "Configure project",
+                "Empty build folder",
+                "Create build files",
                 "Build project",
-                "Add dependencies"
+                "Compile executable",
+                // "Add dependencies"
             ],
             "group": "build"
         },
@@ -122,8 +143,10 @@
             "label": "Recompile",
             "dependsOrder": "sequence",
             "dependsOn": [
-                "Configure project",
-                "Build project"
+                "Empty build folder",
+                "Create build files",
+                "Build project",
+                "Compile executable"
             ],
             "group": "build"
         },
@@ -144,6 +167,6 @@
                 "Configure tests",
                 "Build tests"
             ]
-        }
+        },
     ]
 }
