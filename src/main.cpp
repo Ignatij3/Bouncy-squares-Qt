@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     shape::MyRectangle rect4(shape::Movement::DYNAMIC, 600, 400, 50, 50, 180);
     shape::MyRectangle rect5(shape::Movement::DYNAMIC, 100, 20, 5, 5, 350);
 
-    handler.add_object({ { &rect1, "darkred" }, { &rect2, "orange" }, { &rect3, "green" }, { &rect4, "blue" }, { &rect5, "yellow" } });
+    handler.add_object({ { &rect1, "darkred" }, { &rect2, "orange" }, { &rect3, "green" }, { &rect4, "pink" }, { &rect5, "orange" } });
 
     engine.rootContext()->setContextProperty("rect1", &rect1);
     engine.rootContext()->setContextProperty("rect2", &rect2);
